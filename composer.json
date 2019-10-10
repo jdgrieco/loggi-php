@@ -1,5 +1,5 @@
 {
-    "name": "jansenfelipe/loggi-php",
+    "name": "jdgrieco/loggi-php",
     "description": "Abstraction layer PHP to integrate with a Loggi API",
     "type": "library",
     "keywords": ["loggi"],
@@ -8,12 +8,16 @@
         {
             "name": "Jansen Felipe",
             "email": "jansen.felipe@gmail.com"
+        },
+        {
+            "name": "José D. Grieco",
+            "email": "jdgrieco@gmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "JansenFelipe\\LoggiPHP\\": "src/",
-            "JansenFelipe\\LoggiPHP\\Tests\\": "tests/"
+            "Jdgrieco\\LoggiPHP\\": "src/",
+            "Jdgrieco\\LoggiPHP\\Tests\\": "tests/"
         }
     },
     "require": {
