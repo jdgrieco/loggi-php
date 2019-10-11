@@ -1,8 +1,8 @@
 <?php
 
-namespace JansenFelipe\LoggiPHP\Contracts;
+namespace Jdgrieco\LoggiPHP\Contracts;
 
-use JansenFelipe\LoggiPHP\Query;
+use Jdgrieco\LoggiPHP\Query;
 
 interface ClientGraphQLContract
 {

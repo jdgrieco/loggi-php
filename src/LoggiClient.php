@@ -1,14 +1,14 @@
 <?php
 
-namespace JansenFelipe\LoggiPHP;
+namespace Jdgrieco\LoggiPHP;
 
-use JansenFelipe\LoggiPHP\Contracts\ClientGraphQLContract;
-use JansenFelipe\LoggiPHP\Exceptions\ConfigurationException;
-use JansenFelipe\LoggiPHP\Exceptions\ResponseException;
+use Jdgrieco\LoggiPHP\Contracts\ClientGraphQLContract;
+use Jdgrieco\LoggiPHP\Exceptions\ConfigurationException;
+use Jdgrieco\LoggiPHP\Exceptions\ResponseException;
 
 class LoggiClient implements ClientGraphQLContract
 {
-    const SANDBOX = 'https://staging.loggi.com/graphql';
+    const SANDBOX    = 'https://staging.loggi.com/graphql';
     const PRODUCTION = 'https://www.loggi.com/graphql';
 
     /**
@@ -36,8 +36,9 @@ class LoggiClient implements ClientGraphQLContract
      * LoggiClient constructor.
      *
      * @param string $environment
-     * @param null $email
-     * @param null $key
+     * @param null   $email
+     * @param null   $key
+     *
      * @throws ConfigurationException
      */
     function __construct($environment = null, $email = null, $key = null)
@@ -45,43 +46,50 @@ class LoggiClient implements ClientGraphQLContract
         /*
          * Setting URL
          */
-        $this->url = !is_null($environment) ? $environment : getenv('LOGGI_API_URL');
+        $this->url = $environment !== null ? $environment : getenv('LOGGI_API_URL');
 
-        if (!$this->url)
+        if (!$this->url) {
             $this->url = LoggiClient::PRODUCTION;
+        }
 
         /*
          * Setting others params
          */
-        $this->email = !is_null($email) ? $email : getenv('LOGGI_API_EMAIL');
-        $this->key = !is_null($key) ? $key : getenv('LOGGI_API_KEY');
+        $this->email = $email !== null ? $email : getenv('LOGGI_API_EMAIL');
+        $this->key = $key !== null ? $key : getenv('LOGGI_API_KEY');
 
         /*
          * Check
          */
-        if (!$this->email)
+        if (!$this->email) {
             throw new ConfigurationException('Enter a email or set the environment variable LOGGI_API_EMAIL');
+        }
 
-        if (!$this->key)
+        if (!$this->key) {
             throw new ConfigurationException('Enter a key or set the environment variable LOGGI_API_KEY');
+        }
 
-        if(!in_array($this->url, [LoggiClient::PRODUCTION, LoggiClient::SANDBOX]))
+        if (!in_array($this->url, [LoggiClient::PRODUCTION, LoggiClient::SANDBOX], true)) {
             throw new ConfigurationException('Set a valid environment');
+        }
     }
 
     /**
      * Execute query
      *
      * @param Query $query
+     *
      * @return array
+     * @throws ResponseException
      */
     public function executeQuery(Query $query)
     {
-        return $this->request(['query' => (string) $query]);
+        return $this->request(['query' => (string)$query]);
     }
 
     /**
      * @param $data
+     *
      * @return mixed
      * @throws ResponseException
      */
@@ -97,8 +105,9 @@ class LoggiClient implements ClientGraphQLContract
 
         curl_close($curl);
 
-        if(isset($result['errors']))
+        if (isset($result['errors'])) {
             throw new ResponseException($result['errors'][0]['message']);
+        }
 
         return $result['data'];
     }
@@ -110,15 +119,17 @@ class LoggiClient implements ClientGraphQLContract
     {
         $curl = curl_init();
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => $this->url,
+        curl_setopt_array(
+            $curl, [
+            CURLOPT_URL            => $this->url,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_POST => true,
-            CURLOPT_HTTPHEADER => array(
+            CURLOPT_POST           => true,
+            CURLOPT_HTTPHEADER     => [
                 'Content-Type: application/json;charset=UTF-8',
-                'Authorization: ApiKey '.$this->email.':'.$this->key
-            )
-        ));
+                'Authorization: ApiKey ' . $this->email . ':' . $this->key,
+            ],
+        ]
+        );
 
         return $curl;
     }

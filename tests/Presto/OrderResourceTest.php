@@ -1,12 +1,12 @@
 <?php
 
-namespace JansenFelipe\LoggiPHP\Tests\Presto;
+namespace Jdgrieco\LoggiPHP\Tests\Presto;
 
-use JansenFelipe\LoggiPHP\Contracts\ClientGraphQLContract;
-use JansenFelipe\LoggiPHP\Presto\Entities\EstimateEntity;
-use JansenFelipe\LoggiPHP\Presto\Entities\LocationEntity;
-use JansenFelipe\LoggiPHP\Presto\Entities\ShopEntity;
-use JansenFelipe\LoggiPHP\Presto\OrderResource;
+use Jdgrieco\LoggiPHP\Contracts\ClientGraphQLContract;
+use Jdgrieco\LoggiPHP\Presto\Entities\EstimateEntity;
+use Jdgrieco\LoggiPHP\Presto\Entities\LocationEntity;
+use Jdgrieco\LoggiPHP\Presto\Entities\ShopEntity;
+use Jdgrieco\LoggiPHP\Presto\OrderResource;
 use PHPUnit_Framework_TestCase;
 
 class OrderResourceTest extends PHPUnit_Framework_TestCase

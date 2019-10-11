@@ -1,11 +1,12 @@
 <?php
 
-namespace JansenFelipe\LoggiPHP\Presto;
+namespace Jdgrieco\LoggiPHP\Presto;
 
-use JansenFelipe\LoggiPHP\LoggiClient;
-use JansenFelipe\LoggiPHP\Contracts\ClientGraphQLContract;
-use JansenFelipe\LoggiPHP\Presto\Entities\ShopEntity;
-use JansenFelipe\LoggiPHP\Query;
+use Jdgrieco\LoggiPHP\Exceptions\ConfigurationException;
+use Jdgrieco\LoggiPHP\LoggiClient;
+use Jdgrieco\LoggiPHP\Contracts\ClientGraphQLContract;
+use Jdgrieco\LoggiPHP\Presto\Entities\ShopEntity;
+use Jdgrieco\LoggiPHP\Query;
 
 class ShopResource
 {
@@ -16,11 +17,14 @@ class ShopResource
 
     /**
      * ShopResource constructor.
+     *
      * @param ClientGraphQLContract|null $client
+     *
+     * @throws ConfigurationException
      */
     function __construct(ClientGraphQLContract $client = null)
     {
-        if(is_null($client))
+        if($client === null)
             $client = new LoggiClient();
 
         $this->client = $client;

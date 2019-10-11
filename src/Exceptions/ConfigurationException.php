@@ -1,6 +1,6 @@
 <?php
 
-namespace JansenFelipe\LoggiPHP\Exceptions;
+namespace Jdgrieco\LoggiPHP\Exceptions;
 
 use Throwable;
 
