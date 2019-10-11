@@ -88,6 +88,19 @@ class LoggiClient implements ClientGraphQLContract
     }
 
     /**
+     * Execute mutation
+     *
+     * @param Mutation $mutation
+     *
+     * @return array
+     * @throws ResponseException
+     */
+    public function executeMutation(Mutation $mutation)
+    {
+        return $this->request(['query' => (string)$mutation]);
+    }
+
+    /**
      * @param $data
      *
      * @return mixed
@@ -121,14 +134,14 @@ class LoggiClient implements ClientGraphQLContract
 
         curl_setopt_array(
             $curl, [
-            CURLOPT_URL            => $this->url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_POST           => true,
-            CURLOPT_HTTPHEADER     => [
-                'Content-Type: application/json;charset=UTF-8',
-                'Authorization: ApiKey ' . $this->email . ':' . $this->key,
-            ],
-        ]
+                     CURLOPT_URL            => $this->url,
+                     CURLOPT_RETURNTRANSFER => true,
+                     CURLOPT_POST           => true,
+                     CURLOPT_HTTPHEADER     => [
+                         'Content-Type: application/json;charset=UTF-8',
+                         'Authorization: ApiKey ' . $this->email . ':' . $this->key,
+                     ],
+                 ]
         );
 
         return $curl;
