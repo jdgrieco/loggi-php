@@ -1,10 +1,10 @@
 <?php
 
-namespace JansenFelipe\LoggiPHP\Tests\Presto;
+namespace Jdgrieco\LoggiPHP\Tests\Presto;
 
-use JansenFelipe\LoggiPHP\Contracts\ClientGraphQLContract;
-use JansenFelipe\LoggiPHP\Presto\Entities\ShopEntity;
-use JansenFelipe\LoggiPHP\Presto\ShopResource;
+use Jdgrieco\LoggiPHP\Contracts\ClientGraphQLContract;
+use Jdgrieco\LoggiPHP\Presto\Entities\ShopEntity;
+use Jdgrieco\LoggiPHP\Presto\ShopResource;
 use PHPUnit_Framework_TestCase;
 
 class ShopResourceTest extends PHPUnit_Framework_TestCase

@@ -1,6 +1,6 @@
 <?php
 
-namespace JansenFelipe\LoggiPHP\Presto\Entities;
+namespace Jdgrieco\LoggiPHP\Presto\Entities;
 
 class EstimateEntity
 {

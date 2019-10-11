@@ -1,6 +1,6 @@
 <?php
 
-namespace JansenFelipe\LoggiPHP;
+namespace Jdgrieco\LoggiPHP;
 
 class Mutation
 {
