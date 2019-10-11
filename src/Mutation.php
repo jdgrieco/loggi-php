@@ -44,8 +44,6 @@ class Mutation
             $return .= $value . ' ';
         }
 
-        $return .= ' }';
-
         return '{ ' . $return . ' }';
     }
 }
